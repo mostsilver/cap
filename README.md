@@ -24,3 +24,7 @@ pandas
 numpy
 scikit-learn
 joblib
+
+
+
+사용자에게 헬스장을 추천하는 시스템으로 작업중
