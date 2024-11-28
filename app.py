@@ -121,6 +121,18 @@ if st.button("Predict"):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
         
         # 데이터 입력
         gym = {
@@ -172,9 +184,6 @@ if st.button("Predict"):
         # 결과 출력
         #print("합계 점수가 가장 높은 헬스장:")
         #print(best_gym[['셔틀정류장', '헬스장 목록', 'A', 'B', 'C', '합계 점수']])
-
-
-
         
           # 출력
         st.write(f"합계 점수가 가장 높은 헬스장:")
@@ -183,11 +192,21 @@ if st.button("Predict"):
         st.write(gym[['셔틀정류장', '헬스장 목록', 'A', 'B', 'C', '합계 점수']])
 
 
+
+
+
+
+
+
+
+
+        
+
         # 사용자로부터 셔틀정류장 입력받기
         user_shuttle = input("셔틀정류장을 입력하세요: ")
 
         # 셔틀정류장에 해당하는 헬스장 필터링
-        filtered_gym_df = gym_df[gym_df['셔틀정류장'] == user_shuttle]
+        filtered_gym_df = gym[gym['셔틀정류장'] == user_shuttle]
         
         # A, B, C 점수와 중요도를 곱한 뒤 합산
         filtered_gym_df['합계 점수'] = (
@@ -204,6 +223,9 @@ if st.button("Predict"):
         st.write(sorted_gym_df[['셔틀정류장', '헬스장 목록', 'A', 'B', 'C', '합계 점수']])
 
 
+
+
+        
         # Streamlit 앱
         st.title("헬스장 추천 시스템")
         st.write("셔틀정류장에 해당하는 헬스장을 검색하고, 점수를 계산하여 결과를 확인하세요.")
@@ -214,7 +236,7 @@ if st.button("Predict"):
         # 셔틀정류장 입력값이 있을 경우 필터링 및 점수 계산
         if user_shuttle:
             # 셔틀정류장에 해당하는 헬스장 필터링
-            filtered_gym_df = gym_df[gym_df['셔틀정류장'] == user_shuttle]
+            filtered_gym_df = gym[gym['셔틀정류장'] == user_shuttle]
         
             # A, B, C 점수와 중요도를 곱한 뒤 합산
             filtered_gym_df['합계 점수'] = (
