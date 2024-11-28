@@ -143,19 +143,34 @@ if st.button("Predict"):
         # DataFrame으로 변환
         gym = pd.DataFrame(gym)
 
+        # a, b, c 점수에 따라 순서 계산 (내림차순으로 정렬)
+        gym['abc 순서'] = gym.apply(lambda row: ''.join(sorted(['A', 'B', 'C'], key=lambda x: row[x], reverse=True)), axis=1)
+
+
+        # 중요도 점수를 Series로 변환
+        weights = df_sums_transposed.iloc[0]  # Value 행만 선택
+
+        # A, B, C 점수와 중요도를 곱한 뒤 합산
+        gym['합계 점수'] = (
+            gym['A'] * weights['A'] +
+            gym['B'] * weights['B'] +
+            gym['C'] * weights['C']
+        )
+
+        # 합계 점수가 가장 큰 헬스장 선택
+        best_gym = gym[gym['합계 점수'] == gym['합계 점수'].max()]
+
+        # 결과 출력
+        print("합계 점수가 가장 높은 헬스장:")
+        print(best_gym[['셔틀정류장', '헬스장 목록', 'A', 'B', 'C', '합계 점수']])
 
 
 
+          # 출력
+        st.write(f"합계 점수가 가장 높은 헬스장:")
+        st.write(f"best_gym[['셔틀정류장', '헬스장 목록', 'A', 'B', 'C', '합계 점수']]")
 
 
-
-        
-
-        # 동일한 합을 가진 헬스장 찾기
-        target_value = sums_sorted[0][1]  # 예시: 최대값을 기준으로
-        matching_gyms = [gym for gym, value in sums if value == target_value]
-
-        st.write(f"\n같은 합을 가진 헬스장: {matching_gyms}")
 
 
 
