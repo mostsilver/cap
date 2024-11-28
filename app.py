@@ -68,19 +68,6 @@ if st.button("Predict"):
 
 
 
-# 모델 및 기존 데이터 로드
-@st.cache_resource
-def load_model():
-    return joblib.load("multi_output_model.pkl")
-
-@st.cache_resource
-def load_data():
-    return pd.read_csv("x_data.csv")
-
-multi_output_model = load_model()
-x_data = load_data()
-features = list(x_data.columns)
-
 # 사용자 입력 함수
 #def get_user_input(features):
 #    user_data = {}
