@@ -91,6 +91,9 @@ features = list(x_data.columns)
 
 
 
+if st.button("다음 세션으로 이동"):
+    st.experimental_rerun()
+
 
 
 
