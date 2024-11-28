@@ -97,8 +97,8 @@ if st.button("Predict"):
             df_product[col] = df.iloc[:, i] * y_pred[0, i]
 
         # 결과 출력
-#        st.subheader("A, B, C 항목별 예측값 곱한 결과:")
-#        st.write(df_product)
+        st.subheader("A, B, C 항목별 예측값 곱한 결과:")
+        st.write(df_product)
 
 
         # A, B, C 항목의 합 계산
