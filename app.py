@@ -82,12 +82,12 @@ x_data = load_data()
 features = list(x_data.columns)
 
 # 사용자 입력 함수
-def get_user_input(features):
-    user_data = {}
-    for feature in features:
-        user_data[feature] = st.text_input(f"{feature}:")
-    return user_data
-
+#def get_user_input(features):
+#    user_data = {}
+#    for feature in features:
+#        user_data[feature] = st.text_input(f"{feature}:")
+#    return user_data
+###############################################################다음장
 # gym 데이터
 gym_data = {
     '셔틀정류장': ['학교', '학교', '학교', '무실행정복지센터정거장', '무실행정복지센터정거장', '무실행정복지센터정거장',
@@ -167,5 +167,6 @@ if st.button("Predict & Recommend"):
         # 헬스장 추천 결과 출력
         st.subheader("추천 헬스장")
         st.write(best_gym[['셔틀정류장', '헬스장 목록', 'A', 'B', 'C', '합계 점수']])
+        
     except Exception as e:
         st.error(f"오류 발생: {e}")
