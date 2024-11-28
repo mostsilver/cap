@@ -146,6 +146,15 @@ if st.button("Predict"):
         # a, b, c 점수에 따라 순서 계산 (내림차순으로 정렬)
         gym['abc 순서'] = gym.apply(lambda row: ''.join(sorted(['A', 'B', 'C'], key=lambda x: row[x], reverse=True)), axis=1)
 
+        # DataFrame으로 변환
+        df_sums_sorted = pd.DataFrame(sums_sorted, columns=['Category', 'Value'])
+
+        # 가로 형식으로 변환
+        df_sums_transposed = df_sums_sorted.set_index('Category').T
+
+        # 결과 출력
+        #print(df_sums_transposed)
+
 
         # 중요도 점수를 Series로 변환
         weights = df_sums_transposed.iloc[0]  # Value 행만 선택
