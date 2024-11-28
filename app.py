@@ -26,6 +26,7 @@ def get_user_input(features):
     return user_data
 
 
+
 # Streamlit 앱
 st.title("Multi-Output Model Prediction")
 st.write("이 앱은 사용자의 입력 데이터를 기반으로 타겟 값을 예측합니다.")
@@ -33,7 +34,8 @@ st.write("이 앱은 사용자의 입력 데이터를 기반으로 타겟 값을
 # 사용자 입력 섹션
 st.header("사용자 데이터 입력")
 user_input = get_user_input(features)
-
+# 사용자로부터 셔틀정류장 입력 받기
+user_shuttle = st.text_input("셔틀정류장을 입력하세요:")
 # 결측값 처리 및 데이터 준비
 if st.button("Predict"):
     try:
