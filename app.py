@@ -228,8 +228,7 @@ if st.button("Predict"):
                 st.error(f"오류 발생: {e}")
 
 
-
-  except Exception as e:
+except Exception as e:
                 st.error(f"오류 발생: {e}")
 
 
