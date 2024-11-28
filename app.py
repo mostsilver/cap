@@ -78,12 +78,6 @@ if st.button("Predict"):
 
 
 
-if st.button("다음 세션으로 이동"):
-    st.experimental_rerun()
-
-
-import pandas as pd
-
 # 예측값 (A, B, C별 예측값)
 data = {
     's1': [3.301927249, 3, 3],
