@@ -195,16 +195,16 @@ if st.button("Predict"):
 
 
 
+# Streamlit 앱
+st.title("헬스장 추천 시스템")
+st.write("셔틀정류장에 해당하는 헬스장을 검색하고, 점수를 계산하여 결과를 확인하세요.")
 
+# 사용자로부터 셔틀정류장 입력 받기
+user_shuttle = st.text_input("셔틀정류장을 입력하세요:")
 
-
-
-
-        
-
-        # 사용자로부터 셔틀정류장 입력받기
-        user_shuttle = input("셔틀정류장을 입력하세요: ")
-
+# 입력값이 있으면 필터링 및 점수 계산
+if user_shuttle:
+    try:
         # 셔틀정류장에 해당하는 헬스장 필터링
         filtered_gym_df = gym[gym['셔틀정류장'] == user_shuttle]
         
@@ -214,14 +214,24 @@ if st.button("Predict"):
             filtered_gym_df['B'] * weights['B'] +
             filtered_gym_df['C'] * weights['C']
         )
-
+    
         # 합계 점수순으로 정렬
         sorted_gym_df = filtered_gym_df.sort_values(by='합계 점수', ascending=False)
-
+        
         # 결과 출력
         st.write(f"{user_shuttle}에 해당하는 헬스장들 (합계 점수순으로 정렬):")
         st.write(sorted_gym_df[['셔틀정류장', '헬스장 목록', 'A', 'B', 'C', '합계 점수']])
+        
+    except Exception as e:
+        st.error(f"오류 발생: {e}")
 
+
+
+
+
+        
+
+        
 
 
 
