@@ -4,6 +4,16 @@ import numpy as np
 from sklearn.impute import SimpleImputer
 import joblib
 
+
+# 사용자 입력 함수
+def get_user_input(features):
+    user_data = {}
+    for i, feature in enumerate(features):
+        # key를 명시적으로 지정하여 중복 방지
+        user_data[feature] = st.text_input(f"{feature}:", key=f"user_input_{i}")
+    return user_data
+
+
 # 모델 및 기존 데이터 로드
 @st.cache_resource  # 모델 로드를 캐시로 저장하여 효율성 향상
 def load_model():
