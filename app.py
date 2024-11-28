@@ -57,6 +57,14 @@ if st.button("Predict"):
         # 모델로 예측
         y_pred = multi_output_model.predict(x_user_filled)
 
+
+        # 예측값을 DataFrame으로 변환하여 출력
+        y_pred_df = pd.DataFrame(y_pred, columns=[f"Target_Y{i+1}" for i in range(y_pred.shape[1])])
+        st.subheader("예측된 Target 값:")
+        st.write(y_pred_df)
+
+        
+
         # 예측값을 A, B, C로 계산된 결과에 곱해줍니다.
         data = {
             's1': [3.301927249, 3, 3],
@@ -92,10 +100,6 @@ if st.button("Predict"):
         st.subheader("A, B, C 항목별 예측값 곱한 결과:")
         st.write(df_product)
 
-        # 예측값을 DataFrame으로 변환하여 출력
-        y_pred_df = pd.DataFrame(y_pred, columns=[f"Target_Y{i+1}" for i in range(y_pred.shape[1])])
-        st.subheader("예측된 Target 값:")
-        st.write(y_pred_df)
 
         # A, B, C 항목의 합 계산
         sum_a = df_product.loc['A'].sum()
