@@ -95,6 +95,7 @@ if st.button("다음 세션으로 이동"):
     st.experimental_rerun()
 
 
+import pandas as pd
 
 # 예측값 (A, B, C별 예측값)
 data = {
@@ -121,18 +122,9 @@ data = {
 # DataFrame으로 변환
 df = pd.DataFrame(data, index=['A', 'B', 'C'])
 
-# Streamlit 앱 설정
-st.title("헬스장 추천 시스템")
-st.write("이 앱은 A, B, C 항목에 대한 예측값을 입력하고, 각 헬스장의 중요도를 계산하여 추천합니다.")
-
-# 사용자 입력을 받는 부분
-st.header("각 항목(A, B, C)의 예측값 입력")
-y_pred_input = {}
-for i, col in enumerate(df.columns):
-    y_pred_input[col] = st.number_input(f"{col} 예측값", value=3.0, step=0.1)
 
 # 예측값을 DataFrame으로 변환
-y_pred = pd.DataFrame([y_pred_input])
+y_pred = pd.DataFrame(y_pred)
 
 # 예측값을 각 항목별로 곱한 결과 계산
 df_product = pd.DataFrame(columns=df.columns)
@@ -142,8 +134,8 @@ for i, col in enumerate(df.columns):
     df_product[col] = df.iloc[:, i] * y_pred.iloc[0, i]
 
 # 결과 출력
-st.subheader("A, B, C 항목별 예측값 곱한 결과:")
-st.write(df_product)
+print("A, B, C 항목별 예측값 곱한 결과:")
+print(df_product)
 
 # A, B, C 항목의 합 계산
 sum_a = df_product.loc['A'].sum()
@@ -151,27 +143,29 @@ sum_b = df_product.loc['B'].sum()
 sum_c = df_product.loc['C'].sum()
 
 # 출력
-st.write(f"\nA 항목 합: {sum_a}")
-st.write(f"B 항목 합: {sum_b}")
-st.write(f"C 항목 합: {sum_c}")
+print("\nA 항목 합:", sum_a)
+print("B 항목 합:", sum_b)
+print("C 항목 합:", sum_c)
+
+# sum_a, sum_b, sum_c 순서대로 리스트로 저장
+sums = [('A', sum_a), ('B', sum_b), ('C', sum_c)]
 
 # 합산 값 기준으로 정렬 (내림차순)
-sums = [('A', sum_a), ('B', sum_b), ('C', sum_c)]
 sums_sorted = sorted(sums, key=lambda x: x[1], reverse=True)
 
-# 정렬된 순서대로 출력
+# 정렬된 순서대로 사람 매칭
 sorted_people = ''.join([x[0] for x in sums_sorted])
-st.write(f"\n정렬된 순서: {sorted_people}")
 
-# 동일한 합을 가진 헬스장 찾기
+print("\n정렬된  순서:", sorted_people)
+
+# 같은 값을 가지는 헬스장 찾기
+# 예를 들어, 동일한 합을 가진 헬스장을 찾아 출력
 target_value = sums_sorted[0][1]  # 예시: 최대값을 기준으로
+
+# 해당 합을 가진 사람들 추출
 matching_gyms = [gym for gym, value in sums if value == target_value]
 
-st.write(f"\n같은 합을 가진 헬스장: {matching_gyms}")
-
-# 새로운 세션으로 진행하는 버튼
-if st.button("다음 세션으로 이동"):
-    st.experimental_rerun()
+print("\n같은 합을 가진 헬스장:", matching_gyms)
 
 
 
