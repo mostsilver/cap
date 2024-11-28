@@ -124,5 +124,25 @@ if st.button("Predict"):
         matching_gyms = [gym for gym, value in sums if value == target_value]
 
         st.write(f"\n같은 합을 가진 헬스장: {matching_gyms}")
+
+
+        # sum_a, sum_b, sum_c 순서대로 리스트로 저장
+        sums = [('A', sum_a), ('B', sum_b), ('C', sum_c)]
+
+        # 합산 값 기준으로 정렬 (내림차순)
+        sums_sorted = sorted(sums, key=lambda x: x[1], reverse=True)
+
+        # 정렬된 순서대로 사람 매칭
+        sorted_abc = ''.join([x[0] for x in sums_sorted])
+
+        print("\n정렬된 중요 순서:", sorted_abc)
+        print(sums_sorted)
+
+
+
+
+
+
+    
     except Exception as e:
         st.error(f"오류 발생: {e}")
