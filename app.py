@@ -4,7 +4,6 @@ import numpy as np
 from sklearn.impute import SimpleImputer
 import joblib
 
-
 # 모델 및 기존 데이터 로드
 @st.cache_resource  # 모델 로드를 캐시로 저장하여 효율성 향상
 def load_model():
@@ -92,6 +91,11 @@ if st.button("Predict"):
         # 결과 출력
         st.subheader("A, B, C 항목별 예측값 곱한 결과:")
         st.write(df_product)
+
+        # 예측값을 DataFrame으로 변환하여 출력
+        y_pred_df = pd.DataFrame(y_pred, columns=[f"Target_Y{i+1}" for i in range(y_pred.shape[1])])
+        st.subheader("예측된 Target 값:")
+        st.write(y_pred_df)
 
         # A, B, C 항목의 합 계산
         sum_a = df_product.loc['A'].sum()
