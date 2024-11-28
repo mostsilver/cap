@@ -97,8 +97,8 @@ if st.button("Predict"):
             df_product[col] = df.iloc[:, i] * y_pred[0, i]
 
         # 결과 출력
-        st.subheader("A, B, C 항목별 예측값 곱한 결과:")
-        st.write(df_product)
+#        st.subheader("A, B, C 항목별 예측값 곱한 결과:")
+#        st.write(df_product)
 
 
         # A, B, C 항목의 합 계산
@@ -117,7 +117,7 @@ if st.button("Predict"):
 
         # 정렬된 순서대로 출력
         sorted_people = ''.join([x[0] for x in sums_sorted])
-        st.write(f"\n정렬된 순서: {sorted_people}")
+        st.write(f"\n사용자의 유형: {sorted_people}")
 
         # 동일한 합을 가진 헬스장 찾기
         target_value = sums_sorted[0][1]  # 예시: 최대값을 기준으로
