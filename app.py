@@ -178,6 +178,8 @@ if st.button("Predict"):
           # 출력
         st.write(f"합계 점수가 가장 높은 헬스장:")
         st.write(best_gym[['셔틀정류장', '헬스장 목록', 'A', 'B', 'C', '합계 점수']])
+        
+        st.write(gym[['셔틀정류장', '헬스장 목록', 'A', 'B', 'C', '합계 점수']])
 
 
 
