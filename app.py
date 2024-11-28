@@ -170,14 +170,14 @@ if st.button("Predict"):
         best_gym = gym[gym['합계 점수'] == gym['합계 점수'].max()]
 
         # 결과 출력
-        print("합계 점수가 가장 높은 헬스장:")
-        print(best_gym[['셔틀정류장', '헬스장 목록', 'A', 'B', 'C', '합계 점수']])
+        #print("합계 점수가 가장 높은 헬스장:")
+        #print(best_gym[['셔틀정류장', '헬스장 목록', 'A', 'B', 'C', '합계 점수']])
 
 
 
           # 출력
         st.write(f"합계 점수가 가장 높은 헬스장:")
-        st.write(f"best_gym[['셔틀정류장', '헬스장 목록', 'A', 'B', 'C', '합계 점수']]")
+        st.write(best_gym[['셔틀정류장', '헬스장 목록', 'A', 'B', 'C', '합계 점수']])
 
 
 
